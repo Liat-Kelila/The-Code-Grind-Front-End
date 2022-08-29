@@ -3,6 +3,9 @@ import {useState} from 'react';
 import axios from 'axios';
 
 //Import component(s)
+import Input from './components/Input';
+import Item from './components/Item';
+import Update from './components/Update';
 
 const App = () => {
 

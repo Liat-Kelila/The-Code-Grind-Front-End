@@ -48,7 +48,7 @@ const updateItems = (event) => {
     items.map((item) => {
       return (
         <summary>Update Menu Items</summary>
-        <form onSubmit={updateItems}>
+          ß<form onSubmit={updateItems}>
             Name: <input type="text" defaultValue={props.items.name}/>
             Season: <input type="text" defaultValue={props.items.image}/>
             Image: <input type="text"  defaultValue={props.items.image}/>
