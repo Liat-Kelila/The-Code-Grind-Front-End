@@ -1,17 +1,19 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import axios from 'axios';
 
 const Input = (props) => {
 
 //State Declarations
 //Schema: name, season, image, category, ingredients, description, hasCaffeine, hasDairy
 const [items, setItems] = useState([]);
+const [newName, setNewName] = useState('');
 const [newSeason, setNewSeason] = useState('');
 const [newImage, setNewImage] = useState('');
 const [newCategory, setNewCategory] = useState('');
 const [newIngredients, setNewIngredients] = useState('');
 const [newDescription, setNewDescription] = useState('');
-const [newCaffeine, setNewCaffeine] = useState(true);
-const [newHasDairy, setNewHasDairy] = useState(true);
+const [newCaffeine, setNewCaffeine] = useState(false);
+const [newHasDairy, setNewHasDairy] = useState(false);
 
 
 ////Functions to handle new items
@@ -20,6 +22,9 @@ const [newHasDairy, setNewHasDairy] = useState(true);
 // const newItemInput = (event) => {
 //   setItems(event.target.value);
 // }
+const newNameInput = (event) => {
+  setNewName(event.target.value);
+}
 
 //Function to Handle New Season Change
 const newSeasonInput = (event) => {
@@ -33,7 +38,7 @@ const newImageInput = (event) => {
 
 //Function to Handle New Item Name Change
 const newCategoryInput = (event) => {
-  setNewCategory(event.target.value);
+  setNewCategory('UserMade');
 }
 
 //Function to Handle New Item Name Change
@@ -47,12 +52,12 @@ const newDescriptionInput = (event) => {
 }
 
 //Function to Handle New Item Name Change
-const newHasCaffeineInput = (event) => {
-  setNewHasCaffeine(event.target.value);
+const hasCaffeineInput = (event) => {
+  setNewCaffeine(event.target.value);
 }
 
 //Function to Handle New Item Name Change
-const newHasDairyInput = (event) => {
+const hasDairyInput = (event) => {
   setNewHasDairy(event.target.value);
 }
 
@@ -60,7 +65,7 @@ const newHasDairyInput = (event) => {
 const handleNewItemSubmission = (event) => {
     event.preventDefault();
     axios.post(
-        '',
+        'http://localhost:3000/drinks' + props.items.id,
         {
           name: newName,
           season: newSeason,
@@ -68,7 +73,7 @@ const handleNewItemSubmission = (event) => {
           category: newCategory,
           ingredients: newIngredients,
           description: newDescription,
-          hasCaffeine: newHasCaffeine,
+          hasCaffeine: newCaffeine,
           hasDairy: newHasDairy
         }
 
@@ -88,17 +93,15 @@ return (
                 {newNameInput}/><br/>
               Season: <input type="text" onChange=
                 {newSeasonInput}/><br/>
-              Image: <input type="number" min="0" onChange=
+              Image: <input type="text" onChange=
                 {newImageInput}/><br/>
-              Category: <input type="text" onChange=
-                {newCategoryInput}/><br/>
               Ingredients: <input type="text" onChange=
                 {newIngredientsInput}/><br/>
               Description: <input type="text" onChange=
                 {newDescriptionInput}/><br/>
-              Caffeinated: <input type="text" onChange=
+              Caffeinated: <input type="checkbox" onChange=
                 {hasCaffeineInput}/><br/>
-              Dairy: <input type="text" onChange=
+              Contains Dairy: <input type="checkbox" onChange=
                 {hasDairyInput}/><br/>
             <input type="submit" value="Create Item"/>
             </form>
