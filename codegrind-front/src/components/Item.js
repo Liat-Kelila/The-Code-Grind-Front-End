@@ -1,9 +1,25 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
 const Item = (props) => {
 
 //Schema: name, season, image, category, ingredients, description, hasCaffeine, hasDairy
   return (
+//state declaration
+const [items, setItems] = useState([]);
+let [display, setDisplay] = useState('suggestItem')
+
+// //Use Effect
+// useEffect(() => {
+//     axios
+//       .get('')
+//       .then((response) => {
+//           setItems(response.data)
+//       })
+// }, []);
+
+
+
+
     <>
         <img src={props.items.image}/>
         <h3>Name: {props.items.name}</h3>

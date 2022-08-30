@@ -13,14 +13,6 @@ const [newDescription, setNewDescription] = useState('');
 const [newCaffeine, setNewCaffeine] = useState(true);
 const [newHasDairy, setNewHasDairy] = useState(true);
 
-//Use Effect
-useEffect(() => {
-    axios
-      .get('')
-      .then((response) => {
-          setItems(response.data)
-      })
-}, []);
 
 ////Functions to handle new items
 
@@ -83,7 +75,7 @@ const handleNewItemSubmission = (event) => {
       ).then(() => {
         axios.get('')
           .then((response) => {
-          setBirds(response.data)
+          setItems(response.data)
         })
     })
   }
@@ -91,24 +83,24 @@ const handleNewItemSubmission = (event) => {
 return (
     <section>
             <h2>Submit New Item Suggestion</h2>
-            <form onSubmit={handleNewItemsSubmission}>
+            <form onSubmit={handleNewItemSubmission}>
               Name: <input type="text" onChange=
-                {newName}/><br/>
+                {newNameInput}/><br/>
               Season: <input type="text" onChange=
-                {newSeason}/><br/>
+                {newSeasonInput}/><br/>
               Image: <input type="number" min="0" onChange=
-                {newImage}/><br/>
+                {newImageInput}/><br/>
               Category: <input type="text" onChange=
-                {newCategory}/><br/>
+                {newCategoryInput}/><br/>
               Ingredients: <input type="text" onChange=
-                {newIngredients}/><br/>
+                {newIngredientsInput}/><br/>
               Description: <input type="text" onChange=
-                {newDescription}/><br/>
+                {newDescriptionInput}/><br/>
               Caffeinated: <input type="text" onChange=
-                {hasCaffeine}/><br/>
+                {hasCaffeineInput}/><br/>
               Dairy: <input type="text" onChange=
-                {hasDairy}/><br/>
-            <input type="submit" value="Create Bird"/>
+                {hasDairyInput}/><br/>
+            <input type="submit" value="Create Item"/>
             </form>
     </section>
   )

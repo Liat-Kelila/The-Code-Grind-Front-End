@@ -1,5 +1,5 @@
 import './App.css';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import axios from 'axios';
 
 //Import component(s)
@@ -9,6 +9,17 @@ import Update from './components/Update';
 
 const App = () => {
 
+let [display, setDisplay] = useState('main menu');
+
+//Use Effect
+useEffect(() => {
+      axios
+        .get('')
+        .then((response) => {
+            setItems(response.data)
+        })
+  }, []);
+
 return (
   <>
 //Display of menu items based on season
@@ -16,7 +27,7 @@ return (
     <div className="winter-items-div">
       <button onClick={(event) =>
         {
-        items.winter.map((item) => {
+        items.season.winter.map((item) => {
           return (
             <div className="item-div" key={items._id}>
               <Item item={item}/>

@@ -5,15 +5,16 @@ const Update = (props) => {
 //State Declarations
 //Schema: name, season, image, category, ingredients, description, hasCaffeine, hasDairy
 const [items, setItems] = useState([]);
+// const [displayPage, setDisplayPage] = useState('update');
 
-//Use Effect
-useEffect(() => {
-    axios
-      .get('')
-      .then((response) => {
-          setItems(response.data)
-      })
-}, []);
+// //Use Effect
+// useEffect(() => {
+//     axios
+//       .get('')
+//       .then((response) => {
+//           setItems(response.data)
+//       })
+// }, []);
 
 //Update
 const updateItems = (event) => {
@@ -38,17 +39,16 @@ const updateItems = (event) => {
         setItems(response.data);
       })
     })
-  }
+}
 
   return (
-
     <>
 //Add delete button!
     {
-    items.map((item) => {
+     items.map((item) =>  {
       return (
         <summary>Update Menu Items</summary>
-          ß<form onSubmit={updateItems}>
+          <form onSubmit={updateItems}>
             Name: <input type="text" defaultValue={props.items.name}/>
             Season: <input type="text" defaultValue={props.items.image}/>
             Image: <input type="text"  defaultValue={props.items.image}/>
@@ -63,6 +63,7 @@ const updateItems = (event) => {
         )
       })
     }
-  </>
+    </>
+
 }
 export default Update;
