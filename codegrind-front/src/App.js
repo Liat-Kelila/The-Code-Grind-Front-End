@@ -14,7 +14,7 @@ let [display, setDisplay] = useState('main menu');
 //Use Effect
 useEffect(() => {
       axios
-        .get('http://localhost:3000/drinks')
+        .get('http://localhost:3001/drinks')
         .then((response) => {
             setItems(response.data)
         })
@@ -26,70 +26,23 @@ useEffect(() => {
       )
   }
 
-  ////Winter Items////
-const showWinterItems = () => {
-  <div className="item-list">
-  {items.season['winter'].map((item) => {
-    return (
-      <div className="item" key={items._id}>
-      <Item item={items}/>
-      </div>
-    )}
-  )}
-  </div>
-}
-
-  ////Spring Items////
-const showSpringItems = () => {
-<div className="item-list">
-{items.spring.map((item) => {
-  return (
-    <div className="item" key={items._id}>
-      <Item item={items}/>
-    </div>
-  )}
-)}
-</div>
-}
-
-/////Summer Items////
-const showSummerItems = () => {
-  <div className="item-list">
-{items.summer.map((item) => {
-  return (
-    <div className="item" key={items._id}>
-      <Item item={items}/>
-    </div>
-  )}
-)}
-</div>
-}
-
-/////Fall Items////
-const showFallItems = () => {
-  <div className="item-list">
-  {
-  items.fall.map((item) => {
-    return (
-      <div className="item" key={items._id}>
-        <Item item={items}/>
-      </div>
-    )}
-  )}
-</div>
-}
-
   //Display of menu items based on season
 return (
   <>
   <h2>Code Grind Menu</h2>
-      <button onClick={showWinterItems}> Winter Items</button>
-      <button onClick={showSpringItems}> Spring Items</button>
-      <button onClick={showSummerItems}> Summer Items</button>
-      <button onClick={showFallItems}> Fall Items </button>
       <button onClick={suggestionBox}> Suggestions </button>
-      <Item item={items}/>
-
+      {items.map((item) => {
+        return (
+        <div className="item">
+            <img src={item.image} alt=""/>
+            <h3>Name: {item.name}</h3>
+            <p>Category: {item.category}</p>
+            <p>Description: {item.description}</p>
+            <p>Caffeinated: {item.hasCaffeine}</p>
+            <p>Has Dairy: {item.hasDairy}</p>
+        </div>
+      )
+      })}
   </>
 )};
 

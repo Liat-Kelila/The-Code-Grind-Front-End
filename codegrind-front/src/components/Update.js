@@ -9,19 +9,12 @@ const [items, setItems] = useState([]);
 const [displayPage, setDisplayPage] = useState('update');
 
 //Use Effect
-useEffect(() => {
-    axios
-      .get(`http://localhost:3000/drinks/` + props.items.id)
-      .then((response) => {
-          setItems(response.data)
-      })
-}, []);
 
 //Update
 const updateItems = (event) => {
     event.preventDefault();
     axios.put(
-      `http://localhost:3000/drinks/` + props.items.id,
+      `http://localhost:3001/drinks/` + props.items.id,
         {
           name: event.target[0].value,
           season: event.target[1].value,
@@ -33,7 +26,7 @@ const updateItems = (event) => {
           hasDairy: event.target[7].value
         }
     ).then((response) => {
-      axios.get('http://localhost:3000/drinks/'+ props.items.id)
+      axios.get('http://localhost:3001/drinks')
     })
       .then((response) => {
         setItems(response.data);

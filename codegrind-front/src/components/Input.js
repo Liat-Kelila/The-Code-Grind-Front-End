@@ -65,7 +65,7 @@ const hasDairyInput = (event) => {
 const handleNewItemSubmission = (event) => {
     event.preventDefault();
     axios.post(
-        'http://localhost:3000/drinks' + props.items.id,
+        'http://localhost:3001/drinks' + props.items.id,
         {
           name: newName,
           season: newSeason,
