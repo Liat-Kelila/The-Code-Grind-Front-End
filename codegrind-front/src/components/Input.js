@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import axios from 'axios';
 
 const Input = (props) => {
@@ -10,7 +10,6 @@ const [items, setItems] = useState([]);
 const [newName, setNewName] = useState('');
 const [newSeason, setNewSeason] = useState('');
 const [newImage, setNewImage] = useState('');
-const [newCategory, setNewCategory] = useState('');
 const [newIngredients, setNewIngredients] = useState('');
 const [newDescription, setNewDescription] = useState('');
 const [newCaffeine, setNewCaffeine] = useState(false);
@@ -37,11 +36,6 @@ const newSeasonInput = (event) => {
 //Function to Handle New Image Change
 const newImageInput = (event) => {
   setNewImage(event.target.value);
-}
-
-//Function to Handle New Item Name Change
-const newCategoryInput = (event) => {
-  setNewCategory(event.target.value);
 }
 
 //Function to Handle New Item Name Change
@@ -73,7 +67,7 @@ const handleNewItemSubmission = (event) => {
           name: newName,
           season: newSeason,
           image: newImage,
-          category: newCategory,
+          category: "User-Made",
           ingredients: newIngredients,
           description: newDescription,
           hasCaffeine: newCaffeine,
