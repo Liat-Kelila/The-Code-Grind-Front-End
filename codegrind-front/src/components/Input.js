@@ -3,6 +3,7 @@ import axios from 'axios';
 
 const Input = (props) => {
 
+
 //State Declarations
 //Schema: name, season, image, category, ingredients, description, hasCaffeine, hasDairy
 const [items, setItems] = useState([]);
@@ -14,6 +15,8 @@ const [newIngredients, setNewIngredients] = useState('');
 const [newDescription, setNewDescription] = useState('');
 const [newCaffeine, setNewCaffeine] = useState(false);
 const [newHasDairy, setNewHasDairy] = useState(false);
+
+
 
 
 ////Functions to handle new items
@@ -38,7 +41,7 @@ const newImageInput = (event) => {
 
 //Function to Handle New Item Name Change
 const newCategoryInput = (event) => {
-  setNewCategory('UserMade');
+  setNewCategory(event.target.value);
 }
 
 //Function to Handle New Item Name Change
@@ -65,7 +68,7 @@ const hasDairyInput = (event) => {
 const handleNewItemSubmission = (event) => {
     event.preventDefault();
     axios.post(
-        'http://localhost:3001/drinks' + props.items.id,
+        'http://localhost:2000/drinks',
         {
           name: newName,
           season: newSeason,
@@ -78,7 +81,7 @@ const handleNewItemSubmission = (event) => {
         }
 
       ).then(() => {
-        axios.get('')
+        axios.get('http://localhost:2000/drinks')
           .then((response) => {
           setItems(response.data)
         })
@@ -108,5 +111,6 @@ return (
     </section>
   )
 }
+
 
 export default Input;
