@@ -68,7 +68,7 @@ const hasDairyInput = (event) => {
 const handleNewItemSubmission = (event) => {
     event.preventDefault();
     axios.post(
-        'http://localhost:3000/drinks',
+        'https://codegrind.herokuapp.com/drinks',
         {
           name: newName,
           season: newSeason,
@@ -81,7 +81,7 @@ const handleNewItemSubmission = (event) => {
         }
 
       ).then(() => {
-        axios.get('http://localhost:3000/drinks')
+        axios.get('https://codegrind.herokuapp.com/drinks')
           .then((response) => {
           setItems(response.data)
         })

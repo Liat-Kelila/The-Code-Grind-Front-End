@@ -14,7 +14,7 @@ const [displayPage, setDisplayPage] = useState('update');
 const updateItems = (event) => {
     event.preventDefault();
     axios.put(
-      `http://localhost:3001/drinks/` + props.items.id,
+      `https://codegrind.herokuapp.com/drinks/` + props.items.id,
         {
           name: event.target[0].value,
           season: event.target[1].value,
@@ -26,7 +26,7 @@ const updateItems = (event) => {
           hasDairy: event.target[7].value
         }
     ).then((response) => {
-      axios.get('http://localhost:3001/drinks')
+      axios.get('https://codegrind.herokuapp.com/drinks')
     })
       .then((response) => {
         setItems(response.data);

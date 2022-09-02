@@ -16,7 +16,7 @@ let [display, setDisplay] = useState('main menu');
 //Use Effect
 useEffect(() => {
       axios
-        .get('http://localhost:3000/drinks')
+        .get('https://codegrind.herokuapp.com/drinks')
         .then((response) => {
             setItems(response.data)
         })
@@ -24,9 +24,9 @@ useEffect(() => {
 
 
 const handleDelete = (itemData) => {
-    axios.delete(`http://localhost:3000/drinks/${itemData._id}`)
+    axios.delete(`https://codegrind.herokuapp.com/drinks/${itemData._id}`)
       .then(() => {
-        axios.get('http://localhost:3000/drinks')
+        axios.get('https://codegrind.herokuapp.com/drinks')
           .then((response) => {
             setItems(response.data)
           })
@@ -35,7 +35,7 @@ const handleDelete = (itemData) => {
 
   const updateItems = (event) => {
         event.preventDefault();
-        axios.put(`http://localhost:3000/drinks/` + event.target[8].value,
+        axios.put(`https://codegrind.herokuapp.com/drinks/` + event.target[8].value,
             {
               name: event.target[0].value,
               season: event.target[1].value,
@@ -47,7 +47,7 @@ const handleDelete = (itemData) => {
               hasDairy: event.target[7].value
             }
         ).then((response) => {
-          axios.get('http://localhost:3000/drinks')
+          axios.get('https://codegrind.herokuapp.com/drinks')
         })
           .then((response) => {
             setItems(response.data);
