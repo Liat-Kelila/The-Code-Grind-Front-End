@@ -26,7 +26,7 @@ useEffect(() => {
 const handleDelete = (itemData) => {
     axios.delete(`https://codegrind.herokuapp.com/drinks/${itemData._id}`)
       .then(() => {
-        axios.get('https://codegrind.herokuapp.com/drinks')
+        axios.get('http://localhost:3000/drinks')
           .then((response) => {
             setItems(response.data)
           })
@@ -56,70 +56,71 @@ const handleDelete = (itemData) => {
   ////////////DOES NOT UPDATE ON PAGE, WILL NEED LOOKING THROUGH
       //Display of menu items based on season
       return (
-        <div className="page">
-        <h1>The Code Grind Cafe</h1>
-        <h2>Menu Items</h2>
-            <button onClick={() => setShowSuggestionBox(!showSuggestionBox)}> Suggestions </button>
-            {showSuggestionBox ?
-              <div className="suggestions">
-                <Input />
-              </div>
-              : null
-            }
-            <div className="item-list">
-            {items.map((item) => {
-              return (
-              <div className="item" key={item._id}>
-                  <img src={item.image} alt=""/>
-                  <h1> {item.name}</h1>
-                  <details>
-                  <summary>More Info</summary>
-                  <p> {item.season} Collection </p> <br/>
-                  <p> {item.category}</p> <br/>
-                  <p> Description:  {item.description}</p> <br/>
-                  <p> Ingredients: {item.ingredients}</p> <br/>
-                  {!item.hasCaffeine
-                    ? <p>Contains Caffiene</p>
-                    : null
-                  }
-                  {!item.hasDairy
-                    ? <p>Contains Dairy</p>
-                    : null
-                  }
-                  <details>
-                            <summary>Delete</summary>
-                              <button
-                                onClick={(event) => {
-                                  handleDelete(item)
-                                }}>
-                                  DELETE
-                              </button>
-                          </details>
-                  <details>
-                            <summary>Edit</summary>
-                            <form className="edit" onSubmit={updateItems}>
-                                <p>
-                                  Name: <input type="text" defaultValue={item.name}/> <br/>
-                                  Season: <input type="text" defaultValue={item.season}/> <br/>
-                                  Image: <input type="text"  defaultValue={item.image}/> <br/>
-                                  Category: <input type="text"  defaultValue={item.category}/> <br/>
-                                  Ingredients: <input type="text" defaultValue={item.ingredients}/> <br/>
-                                  Description:  <input type="text" defaultValue={item.description}/> <br/>
-                                  Has Caffeine: <input type="checkbox" defaultValue={item.hasCaffeine}/> <br/>
-                                  Has Dairy:  <input type="checkbox" defaultValue={item.hasDairy}/> <br/>
-                                  <input type="hidden" defaultValue={item._id}/>
-                                  <input className="submit" type="submit" onClick={() => window.location.reload(false)} value="Save"/>
-                                </p>
-                              </form>
+          <div className="page">
+          <h1>The Code Grind Cafe</h1>
+          <h2>Menu Items</h2>
+              <button onClick={() => setShowSuggestionBox(!showSuggestionBox)}> Suggestions </button>
+              {showSuggestionBox ?
+                <div className="suggestions">
+                  <Input />
+                </div>
+                : null
+              }
+              <div className="item-list">
+              {items.map((item) => {
+                return (
+                <div className="item" key={item._id}>
+                    <img src={item.image} alt=""/>
+                    <h1> {item.name}</h1>
+                    <details>
+                    <summary>More Info</summary>
+                    <p> {item.season} Collection </p> <br/>
+                    <p> {item.category}</p> <br/>
+                    <p> Description:  {item.description}</p> <br/>
+                    <p> Ingredients: {item.ingredients}</p> <br/>
+                    {!item.hasCaffeine
+                      ? <p>Contains Caffiene</p>
+                      : null
+                    }
+                    {!item.hasDairy
+                      ? <p>Contains Dairy</p>
+                      : null
+                    }
+                    <details>
+                              <summary>Delete</summary>
+                                <button
+                                  onClick={(event) => {
+                                    handleDelete(item)
+                                  }}>
+                                    DELETE
+                                </button>
+                            </details>
+                    <details>
+                              <summary>Edit</summary>
+                              <form className="edit" onSubmit={updateItems}>
+                                  <p>
+                                    Name: <input type="text" defaultValue={item.name}/> <br/>
+                                    Season: <input type="text" defaultValue={item.season}/> <br/>
+                                    Image: <input type="text"  defaultValue={item.image}/> <br/>
+                                    Category: <input type="text"  defaultValue={item.category}/> <br/>
+                                    Ingredients: <input type="text" defaultValue={item.ingredients}/> <br/>
+                                    Description:  <input type="text" defaultValue={item.description}/> <br/>
+                                    Has Caffeine: <input type="checkbox" defaultValue={item.hasCaffeine}/> <br/>
+                                    Has Dairy:  <input type="checkbox" defaultValue={item.hasDairy}/> <br/>
+                                    <input type="hidden" defaultValue={item._id}/>
+                                    <input className="submit" type="submit" onClick={() => window.location.reload(false)} value="Save"/>
+                                  </p>
+                                </form>
 
-                          </details>
-              </details>
+                            </details>
+                </details>
 
+                </div>
+              )
+              })}
               </div>
-            )
-            })}
-            </div>
-        </div>
-      )};
+          </div>
+    )};
+
 
 export default App;
