@@ -1,6 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 
+const REACT_APP_DRINKS_API = process.env.REACT_APP_DRINKS_API;
+
+
 const Update = (props) => {
 
 //State Declarations
@@ -14,7 +17,7 @@ const [displayPage, setDisplayPage] = useState('update');
 const updateItems = (event) => {
     event.preventDefault();
     axios.put(
-      `https://codegrind.herokuapp.com/drinks/` + props.items.id,
+      `${REACT_APP_DRINKS_API}/drinks` + props.items.id,
         {
           name: event.target[0].value,
           season: event.target[1].value,
@@ -26,7 +29,7 @@ const updateItems = (event) => {
           hasDairy: event.target[7].value
         }
     ).then((response) => {
-      axios.get('https://codegrind.herokuapp.com/drinks')
+      axios.get(`${REACT_APP_DRINKS_API}/drinks`)
     })
       .then((response) => {
         setItems(response.data);

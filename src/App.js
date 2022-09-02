@@ -6,6 +6,8 @@ import Input from './components/Input';
 import Item from './components/Item';
 import Update from './components/Update';
 
+const REACT_APP_DRINKS_API = process.env.REACT_APP_DRINKS_API;
+
 const App = () => {
 
 const [items, setItems] = useState([]);
@@ -16,7 +18,7 @@ let [display, setDisplay] = useState('main menu');
 //Use Effect
 useEffect(() => {
       axios
-        .get('https://codegrind.herokuapp.com/drinks')
+        .get(`${REACT_APP_DRINKS_API}/drinks`)
         .then((response) => {
             setItems(response.data)
         })
@@ -24,9 +26,9 @@ useEffect(() => {
 
 
 const handleDelete = (itemData) => {
-    axios.delete(`https://codegrind.herokuapp.com/drinks/${itemData._id}`)
+    axios.delete(`${REACT_APP_DRINKS_API}/drinks/${itemData._id}`)
       .then(() => {
-        axios.get('https://codegrind.herokuapp.com/drinks')
+        axios.get(`${REACT_APP_DRINKS_API}/drinks`)
           .then((response) => {
             setItems(response.data)
           })
@@ -35,7 +37,7 @@ const handleDelete = (itemData) => {
 
   const updateItems = (event) => {
         event.preventDefault();
-        axios.put(`https://codegrind.herokuapp.com/drinks/` + event.target[8].value,
+        axios.put(`${REACT_APP_DRINKS_API}/drinks/` + event.target[8].value,
             {
               name: event.target[0].value,
               season: event.target[1].value,
@@ -47,7 +49,7 @@ const handleDelete = (itemData) => {
               hasDairy: event.target[7].value
             }
         ).then((response) => {
-          axios.get('https://codegrind.herokuapp.com/drinks')
+          axios.get(`${REACT_APP_DRINKS_API}/drinks`)
         })
           .then((response) => {
             setItems(response.data);

@@ -1,6 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 
+const REACT_APP_DRINKS_API = process.env.REACT_APP_DRINKS_API;
+
+
 const Input = (props) => {
 
 
@@ -68,7 +71,7 @@ const hasDairyInput = (event) => {
 const handleNewItemSubmission = (event) => {
     event.preventDefault();
     axios.post(
-        'https://codegrind.herokuapp.com/drinks',
+        `${REACT_APP_DRINKS_API}/drinks`,
         {
           name: newName,
           season: newSeason,
@@ -81,7 +84,7 @@ const handleNewItemSubmission = (event) => {
         }
 
       ).then(() => {
-        axios.get('https://codegrind.herokuapp.com/drinks')
+        axios.get(`${REACT_APP_DRINKS_API}/drinks`)
           .then((response) => {
           setItems(response.data)
         })
