@@ -1,5 +1,8 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from 'axios';
+
+const REACT_APP_DRINKS_API = process.env.REACT_APP_DRINKS_API;
+
 
 const Input = (props) => {
 
@@ -10,6 +13,7 @@ const [items, setItems] = useState([]);
 const [newName, setNewName] = useState('');
 const [newSeason, setNewSeason] = useState('');
 const [newImage, setNewImage] = useState('');
+const [newCategory, setNewCategory] = useState('');
 const [newIngredients, setNewIngredients] = useState('');
 const [newDescription, setNewDescription] = useState('');
 const [newCaffeine, setNewCaffeine] = useState(false);
@@ -39,6 +43,11 @@ const newImageInput = (event) => {
 }
 
 //Function to Handle New Item Name Change
+const newCategoryInput = (event) => {
+  setNewCategory(event.target.value);
+}
+
+//Function to Handle New Item Name Change
 const newIngredientsInput = (event) => {
   setNewIngredients(event.target.value);
 }
@@ -62,12 +71,12 @@ const hasDairyInput = (event) => {
 const handleNewItemSubmission = (event) => {
     event.preventDefault();
     axios.post(
-        'http://localhost:2000/drinks',
+        `${REACT_APP_DRINKS_API}/drinks`,
         {
           name: newName,
           season: newSeason,
           image: newImage,
-          category: "User-Made",
+          category: newCategory,
           ingredients: newIngredients,
           description: newDescription,
           hasCaffeine: newCaffeine,
@@ -75,16 +84,18 @@ const handleNewItemSubmission = (event) => {
         }
 
       ).then(() => {
-        axios.get('http://localhost:2000/drinks')
+        axios.get(`${REACT_APP_DRINKS_API}/drinks`)
           .then((response) => {
           setItems(response.data)
         })
     })
   }
 
+
+
 return (
     <section>
-            <h2>Submit New Item Suggestion</h2>
+            <h2>Submit New Item</h2>
             <form onSubmit={handleNewItemSubmission}>
               Name: <input type="text" onChange=
                 {newNameInput}/><br/>
