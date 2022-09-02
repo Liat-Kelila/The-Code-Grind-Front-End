@@ -61,7 +61,7 @@ const handleDelete = (itemData) => {
           <div className="page">
           <h1>The Code Grind Cafe</h1>
           <h2>Menu Items</h2>
-              <button onClick={() => setShowSuggestionBox(!showSuggestionBox)}> Suggestions </button>
+              <button onClick={() => setShowSuggestionBox(!showSuggestionBox)}> Add Menu Item </button>
               {showSuggestionBox ?
                 <div className="suggestions">
                   <Input />

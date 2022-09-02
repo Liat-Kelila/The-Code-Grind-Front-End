@@ -95,7 +95,7 @@ const handleNewItemSubmission = (event) => {
 
 return (
     <section>
-            <h2>Submit New Item Suggestion</h2>
+            <h2>Submit New Item</h2>
             <form onSubmit={handleNewItemSubmission}>
               Name: <input type="text" onChange=
                 {newNameInput}/><br/>
