@@ -1,38 +1,93 @@
-.App {
-  text-align: center;
-}
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Ubuntu&display=swap');
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+media only screen and (max-width: 600px) {
+  body {
+  flex-direction: column-reverse;
   }
+  img {
+    height: 35vh;
+    min-width: 100px;
+
+  }
+  .background {
+    border-top-left-radius: 0;
+    border-bottom-right-radius: 0;
+   }
+   .item-list {
+     column-count: 1;
+     font-size: 2vh;
+   }
+
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+body{
+  color: rgb(240, 234, 210);
   display: flex;
-  flex-direction: column;
+  flex-direction: row-reverse;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  background-position: center;
+  background-size: cover;
+  background-image: url(https://wallpaperaccess.com/full/1889536.jpg);
+  background-repeat: no-repeat;
+}
+img {
+  height: 35vh;
+  max-width: 18vw;
+  object-fit: cover;
+  border-top-left-radius: 25%;
+  border-bottom-right-radius: 25%;
+  align-self: center;
+}
+.page {
+  flex-wrap: wrap;
+  grid-gap: 10px;
+  top: 0px;
+  padding: 5vw;
+  background-color: rgba(0, 0, 0, 0.8);
+  font-family: 'Permanent Marker', cursive;
+  font-size: 2vw;
+}
+.item-list {
+  border-top-left-radius: 10%;
+  border-bottom-right-radius: 10%;
+  padding: 40px;
+  font-size: 1vw;
+  font-family: 'Ubuntu', sans-serif;
+  color: #e6ccb2;
+  background-color: #6c584c;
+  column-count: 2;
+  margin: 15px;
+  opacity: 1;
 }
 
-.App-link {
-  color: #61dafb;
+.item {
+  justify-content: center;
+  margin: 10px;
+  margin-top: 0px;
+  margin-bottom: 20px;
+  padding: 30px;
+  border-top-right-radius: 25%;
+  border-bottom-left-radius: 25%;
+  background-color: rgba(173, 193, 120, 0.4);
+  text-align: center;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.submit {
+  border-radius: 35%;
+  padding: 10px;
+  background-color: rgb(169, 132, 103, 0.8);
+  color: rgb(240, 234, 210);
   }
-  to {
-    transform: rotate(360deg);
-  }
+  button {
+  border-radius: 35%;
+  padding: 10px;
+  background-color: rgb(169, 132, 103, 0.8);
+  color: rgb(240, 234, 210);
+}
+p, summary {
+  font-size: 14px;
+  margin: 0;
+  padding: 0px;
+  padding-top: 5px
 }

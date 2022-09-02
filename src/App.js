@@ -55,55 +55,71 @@ const handleDelete = (itemData) => {
     }
   ////////////DOES NOT UPDATE ON PAGE, WILL NEED LOOKING THROUGH
       //Display of menu items based on season
-    return (
-      <>
-      <h2>Code Grind Menu</h2>
-          <button onClick={() => setShowSuggestionBox(!showSuggestionBox)}> Suggestions </button>
-          {showSuggestionBox ?
-            <div>
-              <Input />
-            </div>
-            : null
-          }
-          {items.map((item) => {
-            return (
-            <div className="item" key={item._id}>
-                <img src={item.image} alt=""/>
-                <h3>Name: {item.name}</h3>
-                <p>Category: {item.category}</p>
-                <p>Description: {item.description}</p>
-                <p>Caffeinated: {item.hasCaffeine}</p>
-                <p>Has Dairy: {item.hasDairy}</p>
-                <details>
-                          <summary>Delete</summary>
-                            <button
-                              onClick={(event) => {
-                                handleDelete(item)
-                              }}>
-                                DELETE
-                            </button>
-                        </details>
-                <details>
-                          <summary>Edit</summary>
-                          <form onSubmit={updateItems}>
-                                Name: <input type="text" defaultValue={item.name}/>
-                                Season: <input type="text" defaultValue={item.season}/>
-                                Image: <input type="text"  defaultValue={item.image}/>
-                                Category: <input type="text"  defaultValue={item.category}/>
-                                Ingredients: <input type="text" defaultValue={item.ingredients}/>
-                                Description:  <input type="text" defaultValue={item.description}/>
-                                Has Caffeine: <input type="checkbox" defaultValue={item.hasCaffeine}/>
-                                Has Dairy:  <input type="checkbox" defaultValue={item.hasDairy}/>
-                                <input type="hidden" defaultValue={item._id}/>
-                                <input type="submit" onClick={() => window.location.reload(false)} value="Save"/>
-                            </form>
+      return (
+        <div className="page">
+        <h1>The Code Grind Cafe</h1>
+        <h2>Menu Items</h2>
+            <button onClick={() => setShowSuggestionBox(!showSuggestionBox)}> Suggestions </button>
+            {showSuggestionBox ?
+              <div className="suggestions">
+                <Input />
+              </div>
+              : null
+            }
+            <div className="item-list">
+            {items.map((item) => {
+              return (
+              <div className="item" key={item._id}>
+                  <img src={item.image} alt=""/>
+                  <h1> {item.name}</h1>
+                  <details>
+                  <summary>More Info</summary>
+                  <p> {item.season} Collection </p> <br/>
+                  <p> {item.category}</p> <br/>
+                  <p> Description:  {item.description}</p> <br/>
+                  <p> Ingredients: {item.ingredients}</p> <br/>
+                  {!item.hasCaffeine
+                    ? <p>Contains Caffiene</p>
+                    : null
+                  }
+                  {!item.hasDairy
+                    ? <p>Contains Dairy</p>
+                    : null
+                  }
+                  <details>
+                            <summary>Delete</summary>
+                              <button
+                                onClick={(event) => {
+                                  handleDelete(item)
+                                }}>
+                                  DELETE
+                              </button>
+                          </details>
+                  <details>
+                            <summary>Edit</summary>
+                            <form className="edit" onSubmit={updateItems}>
+                                <p>
+                                  Name: <input type="text" defaultValue={item.name}/> <br/>
+                                  Season: <input type="text" defaultValue={item.season}/> <br/>
+                                  Image: <input type="text"  defaultValue={item.image}/> <br/>
+                                  Category: <input type="text"  defaultValue={item.category}/> <br/>
+                                  Ingredients: <input type="text" defaultValue={item.ingredients}/> <br/>
+                                  Description:  <input type="text" defaultValue={item.description}/> <br/>
+                                  Has Caffeine: <input type="checkbox" defaultValue={item.hasCaffeine}/> <br/>
+                                  Has Dairy:  <input type="checkbox" defaultValue={item.hasDairy}/> <br/>
+                                  <input type="hidden" defaultValue={item._id}/>
+                                  <input className="submit" type="submit" onClick={() => window.location.reload(false)} value="Save"/>
+                                </p>
+                              </form>
 
-                        </details>
-            </div>
-          )
-          })}
-      </>
-    )};
+                          </details>
+              </details>
 
+              </div>
+            )
+            })}
+            </div>
+        </div>
+      )};
 
 export default App;
