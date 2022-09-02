@@ -100,7 +100,7 @@ return (
                 {hasCaffeineInput}/><br/>
               Contains Dairy: <input type="checkbox" onChange=
                 {hasDairyInput}/><br/>
-            <input type="submit" value="Create Item"/>
+            <input type="submit" onClick={() => window.location.reload(false)} value="Create Item"/>
             </form>
     </section>
   )
