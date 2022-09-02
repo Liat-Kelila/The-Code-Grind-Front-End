@@ -26,7 +26,7 @@ useEffect(() => {
 const handleDelete = (itemData) => {
     axios.delete(`https://codegrind.herokuapp.com/drinks/${itemData._id}`)
       .then(() => {
-        axios.get('http://localhost:3000/drinks')
+        axios.get('https://codegrind.herokuapp.com/drinks')
           .then((response) => {
             setItems(response.data)
           })
