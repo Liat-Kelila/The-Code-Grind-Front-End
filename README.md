@@ -1,7 +1,8 @@
 # The-Code-Grind-Front-End
 The Code Grind - All Things Front-End
 
-heroku link: https://codegrind-frontend.herokuapp.com/
+heroku frontend link: https://codegrind-frontend.herokuapp.com/
+heroku backend link: https://codegrind.herokuapp.com/drinks
 
 Coffee Shop Website with Seasonal Items
 
